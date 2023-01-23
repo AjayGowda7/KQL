@@ -273,7 +273,7 @@ Perf
 // using bin_at with summarize
 Perf
 | order by Computer, TimeGenerated desc
-| summarize RowCount=count() by Computer, bin_at(TimeGenerated, 4h, datetime (2023-01-22 11:00:00))
+| summarize RowCount=count() by Computer, bin_at(TimeGenerated, 4h, datetime(2023-01-22 11:00:00))
 
 //------------------------------------------------------------------------------
 // Extend
