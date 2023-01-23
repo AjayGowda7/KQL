@@ -255,13 +255,11 @@ Perf
          by CounterName
           , bin(TimeGenerated, 1d)
 
-
 // Order in the query determines the order in the output
 Perf 
 | summarize NumberOfEntries=count() 
          by bin(TimeGenerated, 1d)
           , CounterName
-
 
 // You can bin by values other than dates.
 // Here we see number of entries for each level at 
@@ -270,7 +268,12 @@ Perf
 | where CounterName == "% Free Space"
 | summarize NumberOfRowsAtThisPercentLevel=count() 
          by bin(CounterValue,10)
-
+         
+         
+// using bin_at with summarize
+Perf
+| order by Computer, TimeGenerated desc
+| summarize RowCount=count() by Computer, bin_at(TimeGenerated, 4h, datetime (2023-01-22 11:00:00))
 
 //------------------------------------------------------------------------------
 // Extend
